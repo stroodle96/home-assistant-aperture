@@ -1,0 +1,6 @@
+aiohttp>=3.13,<4
+mcp==2.3.0
+probatio>=0.13,<1
+pytest>=9,<10
+pytest-asyncio>=1.4,<2
+ruff>=0.17,<1

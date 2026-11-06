@@ -1,0 +1,38 @@
+{
+  "title": "Aperture",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Aperture",
+        "description": "Enter your gateway URL, such as https://aperture.example.ts.net. Home Assistant must be able to reach it and have model and connector grants. Leave the credential empty when using Tailscale identity. After setup, use Add service to create conversation and AI task entities.",
+        "data": {"url": "Gateway URL", "api_key": "Optional credential", "enable_mcp": "Connect to Aperture MCP tools", "timeout": "Request timeout (seconds)"}
+      },
+      "reconfigure": {
+        "title": "Aperture connection",
+        "description": "Update connection settings for this gateway. Leave the credential field unchanged to preserve its saved value; enter an empty value to clear it.",
+        "data": {"url": "Gateway URL", "api_key": "Optional credential", "enable_mcp": "Connect to Aperture MCP tools", "timeout": "Request timeout (seconds)"}
+      },
+      "reauth_confirm": {
+        "title": "Reconnect to Aperture",
+        "description": "Update your credential and check the Tailscale identity and grants used by Home Assistant.",
+        "data": {"url": "Gateway URL", "api_key": "Optional credential", "enable_mcp": "Connect to Aperture MCP tools", "timeout": "Request timeout (seconds)"}
+      }
+    },
+    "error": {"invalid_url": "Enter the gateway URL or its /v1 root, without credentials or query parameters.", "invalid_auth": "Authentication failed. Check your credential.", "access_denied": "Access denied. Check the grants for Home Assistant's Tailscale identity.", "cannot_connect": "Could not read Aperture's model catalog. Check the URL, network connection, and TLS certificate."},
+    "abort": {"already_configured": "This gateway is already configured.", "wrong_gateway": "This URL identifies a different gateway. Add it as another integration.", "reauth_successful": "Reconnection successful.", "reconfigure_successful": "Connection updated."}
+  },
+  "config_subentries": {
+    "conversation": {
+      "title": "Conversation agent",
+      "initiate_flow": {"user": "Add conversation agent", "reconfigure": "Configure agent"},
+      "step": {"options": {"title": "Aperture conversation agent", "description": "Choose a model and the API format its Aperture provider supports. Select Aperture MCP tools to give Assist remote tools. Select Device control as well if you want home control. Leave temperature unset unless the model supports it.", "data": {"model": "Model", "protocol": "Model API format", "max_tokens": "Maximum output tokens", "temperature": "Temperature (optional)", "llm_hass_api": "AI tools", "prompt": "Instructions"}}},
+      "abort": {"entry_not_loaded": "The gateway must be connected before configuring an agent."}
+    },
+    "ai_task_data": {
+      "title": "AI task",
+      "initiate_flow": {"user": "Add AI task", "reconfigure": "Configure AI task"},
+      "step": {"options": {"title": "Aperture AI task", "description": "Choose a model with the API format, image input, and structured output capabilities your tasks need. Leave temperature unset unless the model supports it.", "data": {"model": "Model", "protocol": "Model API format", "max_tokens": "Maximum output tokens", "temperature": "Temperature (optional)"}}},
+      "abort": {"entry_not_loaded": "The gateway must be connected before configuring an AI task."}
+    }
+  }
+}
